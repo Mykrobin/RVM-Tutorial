@@ -20,6 +20,7 @@ pub use self::vcpu::VmxVcpu as RvmVcpu;
 pub use self::vmcs::{VmxExitInfo, VmxInterruptInfo, VmxIoExitInfo};
 pub use self::VmxPerCpuState as ArchPerCpuState;
 
+// 首先检查 VMX 的支持情况，使用 raw_cpuid 库来进行 CPUID 各功能的查询
 pub fn has_hardware_support() -> bool {
     if let Some(feature) = CpuId::new().get_feature_info() {
         feature.has_vmx()
